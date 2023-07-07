@@ -1,5 +1,7 @@
 const User = require('../models/user');
 
+console.log("Hello Form user service");
+
 const ErrorResponse = require("../utils/error");
 const ErrorCodes = require('../utils/status-code');
 
