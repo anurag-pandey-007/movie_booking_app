@@ -10,7 +10,7 @@ const getUserByEmail = async(email)=>{
 
     return user;
 }
-
+console.log("hello from node js");
 const getUserById = async (userId) => {
     const user = await User.findById(userId);
     return user;
