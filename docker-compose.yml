@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  mongodb:
+    image: 'mongo'
+    ports:
+      - "27018:27017"
+    volumes:
+      - /data:/data/db
+    networks:
+      - movie-net
+
+  api-service:
+    build: ./api-service
+    volumes:
+      - ./api-service/src:/app/src
+    ports:
+      - "3013:3013"
+    networks:
+      - movie-net
+    command: "npm run start"
+
+  backend-service:
+    build: ./backend-service
+    volumes:
+      - ./backend-service/src:/app/src
+    ports:
+      - "3012:3012"
+    depends_on:
+      - mongodb
+    networks:
+      - movie-net
+    command: "npm run start"
+
+networks:
+  movie-net:
+    driver: 'bridge'
